@@ -10,7 +10,7 @@
 set -e -o pipefail
 
 PLATFORM=sc8830
-NAME=RZ_kernel
+NAME=ToxicKernel
 VERSION=v1.0
 
 export ARCH=arm
@@ -23,7 +23,7 @@ KERNEL_IMAGE=${KERNEL_ZIP}/tools/Image
 DT_IMG=${KERNEL_ZIP}/tools/dt.img
 EXTERNAL_MODULE_PATH=${KERNEL_PATH}/external_module
 OUTPUT_PATH=${KERNEL_PATH}/output
-DEFCONFIG=rz_cp_defconfig
+DEFCONFIG=cyanogen_grandneove3g_defconfig
 
 JOBS=`grep processor /proc/cpuinfo | wc -l`
 
@@ -39,7 +39,7 @@ function build() {
 	BUILD_START=$(date +"%s");
 	echo -e "$cyan"
 	echo "***********************************************";
-	echo "              Compiling RZ kernel          	     ";
+	echo "              Compiling Toxic  kernel          	     ";
 	echo -e "***********************************************$nocol";
 	echo -e "$red";
 
@@ -94,7 +94,7 @@ function clean() {
 function menu() {
 	echo;
 	echo -e "***************************************************************";
-	echo "      RZ Kernel for Samsung Galaxy Core Prime SM-G360H";
+	echo "      RZ Kernel for Samsung Galaxy Grand Neo Plus";
 	echo -e "***************************************************************";
 	echo "Choices:";
 	echo "1. Cleanup source";
@@ -109,7 +109,7 @@ function main() {
 	read -p "Please specify Toolchain path: " tcpath;
 	if [ "${tcpath}" == "" ]; then
 		echo -e "$red"
-		export CROSS_COMPILE=/home/natsume/toolchain/linaro-4.9/bin/arm-eabi-;
+		export CROSS_COMPILE=/home/rahulpal11011/linaro-arm-eabi-4.9/bin/arm-eabi-;
 		echo -e "No toolchain path found. Using default local one:$nocol ${CROSS_COMPILE}";
 	else
 		export CROSS_COMPILE=${tcpath};
